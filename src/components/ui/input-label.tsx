@@ -10,7 +10,7 @@ const InputLabel = ({ className, label, ...props }: InputLabelProps) => {
     <label className="flex flex-col gap-2">
       <span className="text-clamp3Xl capitalize">{label}</span>
       <Input
-        className={`bg-input placeholder:text-inputText text-clampXl sm:py-7 sm:px-4 ${twMerge(
+        className={`bg-input placeholder:text-inputText text-clampXl py-inputY  ${twMerge(
           className
         )}`}
         {...props}

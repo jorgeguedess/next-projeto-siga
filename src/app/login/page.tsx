@@ -25,7 +25,7 @@ export default function Login() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             <InputLabel
               label="Senha:"
               type="password"

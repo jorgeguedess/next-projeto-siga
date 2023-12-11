@@ -61,6 +61,9 @@ module.exports = {
       width: {
         clampForm: "clamp(6.25rem, 90vw, 28rem)",
       },
+      padding: {
+        inputY: "clamp(1rem, 4vh, 1.75rem)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
