@@ -53,6 +53,14 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontSize: {
+        clamp3Xl: "clamp(1rem, 4vw, 1.5rem)",
+        clampXl: "clamp(1rem, 3vw, 1.25rem)",
+        clampXs: "clamp(0.75rem, 2.5vw, 1.5rem)",
+      },
+      width: {
+        clampForm: "clamp(6.25rem, 90vw, 28rem)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
