@@ -25,16 +25,18 @@ const InputLabel = ({
         <Input
           className="bg-input placeholder:text-inputText py-inputY"
           type="text"
-          placeholder="Digite seu CPF"
           {...props}
         />
       </FormControl>
+      <FormMessage />
+
       {link && (
         <FormDescription className="self-end">
-          <Link href="/reset-password">{link}</Link>
+          <Link href="/reset-password" className="hover:underline">
+            {link}
+          </Link>
         </FormDescription>
       )}
-      <FormMessage />
     </FormItem>
   );
 };

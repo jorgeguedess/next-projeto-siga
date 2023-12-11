@@ -7,15 +7,32 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
 import InputLabel from "./input-label";
+import { normalizeCpfNumber, normalizePassword } from "@/masks/mask";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
+export const formSchema = z.object({
+  username: z
+    .string()
+    .max(11, {
+      message:
+        "O CPF deve conter exatamente 11 dígitos. Por favor, verifique e tente novamente.",
+    })
+    .min(11, {
+      message:
+        "O CPF deve conter exatamente 11 dígitos. Por favor, verifique e tente novamente.",
+    })
+    .refine((value) => normalizeCpfNumber(value), {
+      message:
+        "O CPF informado é inválido. Por favor, verifique se digitou corretamente.",
+    }),
+  password: z.string().refine((value) => normalizePassword(value), {
+    message:
+      "A senha deve ter pelo menos 4 caracteres, incluindo pelo menos uma letra e um dígito",
   }),
 });
+
+function onSubmit(values: z.infer<typeof formSchema>) {
+  console.log(values);
+}
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -26,26 +43,36 @@ export const LoginForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
-
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
+        method="POST"
         className="flex flex-col gap-7"
       >
         <FormField
           control={form.control}
           name="username"
-          render={({ field }) => <InputLabel label="usuário" {...field} />}
+          render={({ field }) => (
+            <InputLabel
+              placeholder="Digite seu CPF"
+              label="usuário"
+              type="text"
+              {...field}
+            />
+          )}
         />
         <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
-            <InputLabel label="senha" link="Esqueceu sua senha?" {...field} />
+            <InputLabel
+              label="senha"
+              placeholder="Digite sua Senha"
+              link="Esqueceu sua senha?"
+              type="password"
+              {...field}
+            />
           )}
         />
 
@@ -57,7 +84,7 @@ export const LoginForm = () => {
           Confirmar
         </Button>
       </form>
-      <p className="text-center text-clampXs mt-4">Problemas com o acesso?</p>
+      <p className="text-center text-base mt-6">Problemas com o acesso?</p>
     </Form>
   );
 };
