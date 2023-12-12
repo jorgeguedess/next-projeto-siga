@@ -1,11 +1,11 @@
-import { Input, InputProps } from "./input";
+import { Input, InputProps } from "../../../components/ui/input";
 import {
   FormControl,
   FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
-} from "./form";
+} from "../../../components/ui/form";
 import Link from "next/link";
 
 interface InputLabelProps extends InputProps {
