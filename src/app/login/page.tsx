@@ -1,7 +1,7 @@
 import { LoginForm } from "@/app/login/components/login-form";
 import Image from "next/image";
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <main className="flex min-h-screen w-full flex-col  items-center justify-center px-6 py-2">
       <div className="w-clampForm">

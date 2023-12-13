@@ -16,12 +16,13 @@ import Image from "next/image";
 import HeaderMenuItem from "./header-menu-item";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
+import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="shadow-full flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground">
+    <header className="mb-10 flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full">
       <Sheet>
-        <SheetTrigger className="p-2">
+        <SheetTrigger className="py-2">
           <AlignJustifyIcon className="h-7 w-7" />
         </SheetTrigger>
         <SheetContent
@@ -29,47 +30,49 @@ const Header = () => {
           className="bg-secondary p-0 text-secondary-foreground before:absolute before:right-[-2rem] before:z-50 before:h-full before:w-1/12 before:bg-destructive"
         >
           <SheetHeader className="py-6 pl-9 sm:py-10">
-            <Image
-              src="/logo-white.svg"
-              alt="SIGA - SISTEMA INTEGRADO DE GESTÃO ACADEMICA"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ objectFit: "cover" }}
-              className="w-full max-w-[70%]"
-            />
+            <Link href="/home">
+              <Image
+                src="/logo-white.svg"
+                alt="SIGA - SISTEMA INTEGRADO DE GESTÃO ACADEMICA"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ objectFit: "cover" }}
+                className="w-full max-w-[70%]"
+              />
+            </Link>
           </SheetHeader>
           <ScrollArea className="h-full max-h-[90%] w-full">
             <ul className="flex flex-col gap-2">
               <HeaderMenuItem
                 icon={<UserRoundIcon />}
                 label="Matrícula"
-                path="#"
+                path="/matricula"
               />
               <HeaderMenuItem
                 icon={<FolderOpenIcon />}
                 label="Consultas"
-                path="#"
+                path="/consultas"
               />
               <HeaderMenuItem
                 icon={<BookTextIcon />}
                 label="Planos de Ensino"
-                path="#"
+                path="/planos-ensino"
               />
               <HeaderMenuItem
                 icon={<CommandIcon />}
                 label="Matrizes em Inglês"
-                path="#"
+                path="/matrizes-ingles"
               />
               <HeaderMenuItem
                 icon={<LibraryBigIcon />}
                 label="Biblioteca"
-                path="#"
+                path="/biblioteca"
               />
               <HeaderMenuItem
                 icon={<BookOpenIcon />}
                 label="Solicitações"
-                path="#"
+                path="/solicitacoes"
               />
               <Separator className="my-2" />
               <HeaderMenuItem icon={<SettingsIcon />} label="Conta" path="#" />
