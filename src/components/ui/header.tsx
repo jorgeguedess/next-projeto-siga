@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AlignJustifyIcon,
   BookOpenIcon,
@@ -9,7 +11,13 @@ import {
   SettingsIcon,
   UserRoundIcon,
 } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./sheet";
 import { Input } from "./input";
 import IconGoogle from "./icon-google";
 import Image from "next/image";
@@ -18,7 +26,14 @@ import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import Link from "next/link";
 
+import { usePathname } from "next/navigation";
+
 const Header = () => {
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/login";
+
+  if (isLoginPage) return null;
+
   return (
     <header className="mb-10 flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full">
       <Sheet>
@@ -27,19 +42,21 @@ const Header = () => {
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="bg-secondary p-0 text-secondary-foreground before:absolute before:right-[-2rem] before:z-50 before:h-full before:w-1/12 before:bg-destructive"
+          className="bg-secondary p-0 text-secondary-foreground before:absolute before:right-0 before:z-50 before:h-full before:w-1/12 before:bg-destructive"
         >
           <SheetHeader className="py-6 pl-9 sm:py-10">
             <Link href="/home">
-              <Image
-                src="/logo-white.svg"
-                alt="SIGA - SISTEMA INTEGRADO DE GESTÃO ACADEMICA"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ objectFit: "cover" }}
-                className="w-full max-w-[70%]"
-              />
+              <SheetClose asChild>
+                <Image
+                  src="/logo-white.svg"
+                  alt="SIGA - SISTEMA INTEGRADO DE GESTÃO ACADEMICA"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ objectFit: "cover" }}
+                  className="w-full max-w-[70%]"
+                />
+              </SheetClose>
             </Link>
           </SheetHeader>
           <ScrollArea className="h-full max-h-[90%] w-full">
@@ -76,7 +93,7 @@ const Header = () => {
               />
               <Separator className="my-2" />
               <HeaderMenuItem icon={<SettingsIcon />} label="Conta" path="#" />
-              <HeaderMenuItem icon={<PowerIcon />} label="Sair" path="#" />
+              <HeaderMenuItem icon={<PowerIcon />} label="Sair" path="/login" />
             </ul>
           </ScrollArea>
         </SheetContent>

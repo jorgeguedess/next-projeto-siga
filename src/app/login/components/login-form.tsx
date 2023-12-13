@@ -9,6 +9,8 @@ import { Form, FormField } from "@/components/ui/form";
 import InputLabel from "./input-label";
 import { normalizeCpfNumber, normalizePassword } from "@/masks/mask";
 
+import { useRouter } from "next/navigation";
+
 export const formSchema = z.object({
   username: z
     .string()
@@ -30,11 +32,15 @@ export const formSchema = z.object({
   }),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
-}
-
 export const LoginForm = () => {
+  const router = useRouter();
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!values) return;
+    console.log(values);
+    router.push("/home", { scroll: false });
+  }
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -79,12 +85,12 @@ export const LoginForm = () => {
         <Button
           type="submit"
           variant="secondary"
-          className="font-normal h-12 sm:h-16  sm:rounded-[1.25rem] w-full sm:text-2xl"
+          className="h-12 w-full font-normal  sm:h-16 sm:rounded-[1.25rem] sm:text-2xl"
         >
           Confirmar
         </Button>
       </form>
-      <p className="text-center text-base mt-6">Problemas com o acesso?</p>
+      <p className="mt-6 text-center text-base">Problemas com o acesso?</p>
     </Form>
   );
 };
