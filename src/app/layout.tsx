@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Lato } from "next/font/google";
 import "./globals.css";
 import "./globalicon.css";
+import Header from "@/components/ui/header";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -32,7 +33,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${lato.variable} font-main`}>
-        {children}
+        <Header />
+        <div className="px-5">{children}</div>
       </body>
     </html>
   );
