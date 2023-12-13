@@ -27,16 +27,27 @@ import { ScrollArea } from "./scroll-area";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const Header = () => {
   const pathname = usePathname();
   const isLoginPage = pathname === "/login";
 
+  const [menuMobileActive, setMenuMobileActive] = useState(false);
+
+  const handleMenuClick = () => {
+    setMenuMobileActive((oldMenuActive) => !oldMenuActive);
+  };
+
   if (isLoginPage) return null;
 
   return (
-    <header className="mb-10 flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full">
-      <Sheet>
+    <header
+      className={`mb-10 flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full ${
+        menuMobileActive && "sr-only"
+      }`}
+    >
+      <Sheet onOpenChange={handleMenuClick}>
         <SheetTrigger className="py-2">
           <AlignJustifyIcon className="h-7 w-7" />
         </SheetTrigger>
