@@ -58,6 +58,13 @@ module.exports = {
         clampXl: "clamp(1rem, 3vw, 1.25rem)",
         clampXs: "clamp(0.75rem, 2.5vw, 1.5rem)",
       },
+      fontFamily: {
+        main: ["var(--font-roboto)"],
+        secondary: ["var(--font-lato)"],
+      },
+      boxShadow: {
+        full: "0 1rem hsl(0, 57%, 40%)",
+      },
       width: {
         clampForm: "clamp(6.25rem, 90vw, 28rem)",
       },
