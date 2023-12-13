@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Lato } from "next/font/google";
 import "./globals.css";
+import "./globalicon.css";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-roboto",
+});
+
+const lato = Lato({
+  weight: ["100", "300", "400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lato",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={`${roboto.variable} ${lato.variable} font-main`}>
+        {children}
+      </body>
     </html>
   );
 }
