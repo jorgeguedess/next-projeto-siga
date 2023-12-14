@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <header
-      className={`mb-10 flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full ${
+      className={`flex w-full items-center justify-between gap-3 bg-primary p-5 text-secondary-foreground shadow-full ${
         menuMobileActive && "sr-only"
       }`}
     >
