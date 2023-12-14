@@ -36,7 +36,7 @@ export default function RootLayout({
         className={`${roboto.variable} ${lato.variable} flex min-h-screen flex-col font-main`}
       >
         <Header />
-        <div className="flex-1 px-5 py-10">{children}</div>
+        <div className="flex-1 py-10">{children}</div>
       </body>
     </html>
   );
