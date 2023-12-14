@@ -32,9 +32,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${lato.variable} font-main`}>
+      <body
+        className={`${roboto.variable} ${lato.variable} flex min-h-screen flex-col font-main`}
+      >
         <Header />
-        <div className="px-5">{children}</div>
+        <div className="flex-1 px-5 py-10">{children}</div>
       </body>
     </html>
   );
