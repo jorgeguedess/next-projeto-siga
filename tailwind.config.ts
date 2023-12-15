@@ -64,6 +64,7 @@ module.exports = {
       },
       boxShadow: {
         full: "0 1rem hsl(0, 57%, 40%)",
+        table: "0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);",
       },
       width: {
         clampForm: "clamp(6.25rem, 90vw, 28rem)",

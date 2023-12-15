@@ -35,7 +35,7 @@ const TableStudy = ({ className, nameTable, data }: TableStudyProps) => {
 
   return (
     <ScrollArea
-      className={`flex h-full w-full flex-col gap-6 bg-secondary-foreground font-main ${twMerge(
+      className={`shadow-table flex h-full w-full flex-col gap-6 rounded-md border border-[#E5E5E5] bg-secondary-foreground font-main ${twMerge(
         className,
       )}`}
     >
