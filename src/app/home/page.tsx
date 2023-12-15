@@ -11,6 +11,7 @@ import {
   disciplinesWithAverage,
   disciplinesWithFrequency,
 } from "@/lib/student";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function HomePage() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -37,14 +38,14 @@ export default function HomePage() {
       <h1 className="mb-6 px-5">Dashboard</h1>
       <div className="flex flex-col gap-9 md:flex-row-reverse">
         <div className="px-5">
-          <div className="mx-auto flex h-full w-full max-w-xs flex-col gap-7 rounded-md bg-white p-5 font-secondary md:gap-10">
+          <ScrollArea className="mx-auto h-full w-full max-w-xs  rounded-md bg-white p-5 font-secondary">
             <Calendar
               mode="single"
               selected={date}
               onSelect={setDate}
               locale={ptBR}
             />
-            <Separator className="bg-[#A5A5A5]" />
+            <Separator className="my-7 bg-[#A5A5A5] md:my-10" />
             <ul className="flex flex-col gap-7">
               {calendarTask.map((task) => (
                 <CalendarTask
@@ -54,7 +55,8 @@ export default function HomePage() {
                 />
               ))}
             </ul>
-          </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
         <section className="mx-1 flex h-full w-full flex-1 flex-col gap-9 overflow-hidden sm:mx-5">
           <TableStudy nameTable="notes" data={disciplinesWithAverage} />
