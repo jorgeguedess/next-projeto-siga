@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -7,26 +8,40 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { arrayDisciplines } from "@/lib/student";
+import {
+  IDisciplineFouls,
+  IDisciplineNotes,
+  tableHeadNames,
+} from "@/lib/student";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 interface TableStudyProps {
   className?: string;
+  nameTable: "notes" | "fouls";
+  data: any;
 }
 
-const TableStudy = ({ className }: TableStudyProps) => {
-  console.log(arrayDisciplines);
+interface TitleTableProps {
+  notes?: string;
+  fouls?: string;
+}
+
+const TableStudy = ({ className, nameTable, data }: TableStudyProps) => {
+  const titleTable: TitleTableProps = {
+    notes: "Notas",
+    fouls: "Faltas",
+  };
 
   return (
-    <div
-      className={`flex flex-col gap-6 bg-secondary-foreground py-5 font-main ${twMerge(
+    <ScrollArea
+      className={`flex h-full w-full flex-col gap-6 bg-secondary-foreground font-main ${twMerge(
         className,
       )}`}
     >
-      <div className="flex justify-between px-5">
+      <div className="flex items-center justify-between p-6 px-5">
         <h2 className="text-2xl font-bold capitalize text-primary-foreground">
-          Notas
+          {titleTable[nameTable]}
         </h2>
         <div className="flex items-center justify-center gap-2">
           <Button variant="ghost">
@@ -41,41 +56,65 @@ const TableStudy = ({ className }: TableStudyProps) => {
         </div>
       </div>
 
-      <Table className="overflow-hidden">
+      <Table className="overflow-hidden text-center">
         <TableHeader>
           <TableRow className="bg-background uppercase">
-            <TableHead className="w-[100px]">DISCIPLINAS</TableHead>
-            <TableHead>P1</TableHead>
-            <TableHead>TRABALHO</TableHead>
-            <TableHead>P2</TableHead>
-            <TableHead>TRABALHO</TableHead>
-            <TableHead>P3</TableHead>
-            <TableHead>MÉDIA FINAL</TableHead>
+            {tableHeadNames[nameTable].map((headName, id: number) => (
+              <TableHead
+                key={headName + id}
+                className={`${headName === "DISCIPLINAS" && "text-left"}`}
+              >
+                {headName}
+              </TableHead>
+            ))}
           </TableRow>
         </TableHeader>
         <TableBody className="text-center">
-          {arrayDisciplines.map((disciplina) => (
-            <TableRow key={disciplina.name}>
-              <TableCell className="text-left font-medium">
-                {disciplina.name}
-              </TableCell>
-              <TableCell>
-                {disciplina.p1 === null ? "--" : disciplina.p1}
-              </TableCell>
-              <TableCell>{disciplina.work1}</TableCell>
-              <TableCell>
-                {disciplina.p2 === null ? "--" : disciplina.p2}
-              </TableCell>
-              <TableCell>{disciplina.work2}</TableCell>
-              <TableCell>
-                {disciplina.p3 === null ? "--" : disciplina.p3}
-              </TableCell>
-              <TableCell>{disciplina.media}</TableCell>
-            </TableRow>
-          ))}
+          {nameTable! && null}
+          {nameTable === "notes" &&
+            data.map((discipline: IDisciplineNotes) => (
+              <TableRow key={discipline.id}>
+                <TableCell className="text-left font-medium">
+                  {discipline.name}
+                </TableCell>
+                <TableCell>
+                  {discipline.p1 === null ? "--" : discipline.p1}
+                </TableCell>
+                <TableCell>{discipline.work1}</TableCell>
+                <TableCell>
+                  {discipline.p2 === null ? "--" : discipline.p2}
+                </TableCell>
+                <TableCell>{discipline.work2}</TableCell>
+                <TableCell>
+                  {discipline.p3 === null ? "--" : discipline.p3}
+                </TableCell>
+                <TableCell>{discipline.average}</TableCell>
+              </TableRow>
+            ))}
+          {nameTable === "fouls" &&
+            data.map((discipline: IDisciplineFouls) => (
+              <TableRow key={discipline.id}>
+                <TableCell className="text-left font-medium">
+                  {discipline.name}
+                </TableCell>
+                <TableCell>
+                  {discipline.absences === null ? "--" : discipline.absences}
+                </TableCell>
+                <TableCell>
+                  {discipline.presences === null ? "--" : discipline.presences}
+                </TableCell>
+                <TableCell>
+                  {discipline.frequency === null
+                    ? "--"
+                    : discipline.frequency + "%"}
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
-    </div>
+
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };
 
