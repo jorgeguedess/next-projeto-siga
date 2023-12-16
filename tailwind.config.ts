@@ -24,6 +24,7 @@ module.exports = {
         icon: "hsl(var(--icon))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        pdf: "hsl(var(--pdf))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
