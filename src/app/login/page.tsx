@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen w-full flex-col  items-center justify-center px-6 py-2">
+    <main className="flex h-screen w-full flex-col items-center justify-center px-6 py-2">
       <div className="w-clampForm">
         <Image
           src="/logo-black.svg"
@@ -12,7 +12,7 @@ export default function LoginPage() {
           height={0}
           sizes="100vw"
           style={{ objectFit: "cover" }}
-          className="mb-5 w-full sm:mb-10"
+          className="w-full sm:mb-10"
         />
         <LoginForm />
       </div>
