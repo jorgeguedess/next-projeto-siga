@@ -69,7 +69,7 @@ export default function MatriculaPage() {
               className="bg-pdf p-3 print:mb-12"
             />
           </div>
-          <ImageActions imageUrl={"imagePdf.src"} />
+          <ImageActions imageUrl={imagePdf.src} />
         </section>
         <section>
           <Title level="h2">Perfil do Aluno(a)</Title>
