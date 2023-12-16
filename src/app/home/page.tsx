@@ -12,6 +12,7 @@ import {
   disciplinesWithFrequency,
 } from "@/lib/student";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import Title from "@/components/ui/title";
 
 export default function HomePage() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -35,7 +36,7 @@ export default function HomePage() {
 
   return (
     <main className="px-1 py-10 font-main text-base">
-      <h1 className="mb-6 px-5">Dashboard</h1>
+      <Title className="mb-6">Dashboard</Title>
       <div className="flex flex-col gap-9 md:flex-row-reverse">
         <div className="px-5">
           <ScrollArea className="mx-auto h-full w-full max-w-xs  rounded-md bg-white p-5 font-secondary">
