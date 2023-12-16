@@ -1,7 +1,6 @@
 import Title from "@/components/ui/title";
-import { DownloadIcon, PrinterIcon } from "lucide-react";
-import ButtonAction from "./components/button-action";
 import PictureImage from "./components/picture-image";
+import { ImageActions } from "./components/image-actions";
 
 export default function MatriculaPage() {
   const imagePdf = {
@@ -67,31 +66,23 @@ export default function MatriculaPage() {
             <PictureImage
               src={imagePdf.src}
               alt={imagePdf.alt}
-              className="bg-pdf p-3"
+              className="bg-pdf p-3 print:mb-12"
             />
           </div>
-          <div className="flex w-full flex-col items-center justify-end gap-2 md:flex-row">
-            <ButtonAction icon={<DownloadIcon />}>Download</ButtonAction>
-            <ButtonAction
-              icon={<PrinterIcon />}
-              className="hidden md:inline-flex"
-            >
-              Imprimir
-            </ButtonAction>
-          </div>
+          <ImageActions imageUrl={"imagePdf.src"} />
         </section>
         <section>
           <Title level="h2">Perfil do Aluno(a)</Title>
-          <div className="w-full bg-secondary-foreground pb-4 pt-7 ">
-            <div className="mx-auto flex max-w-[13rem] flex-col items-center justify-center gap-4 text-center">
+          <div className="w-full bg-secondary-foreground pb-4 pt-7 print:p-0 ">
+            <div className="mx-auto flex max-w-[13rem] flex-col items-center justify-center gap-4 text-center print:max-w-fit">
               <div className="h-[6.25rem] w-[6.25rem] bg-[#C4C4C4] md:h-[10rem] md:w-[10rem]"></div>
-              <p className="font-bold text-card-foreground md:text-xl">
+              <p className="font-bold text-card-foreground print:text-xl md:text-xl">
                 Nome completo do aluno
               </p>
-              <span className="text-xs font-light text-primary">
+              <span className="text-xs font-light text-primary print:text-base">
                 Sistemas Para Internet <br /> Turno: Diurno Ciclo: 2
               </span>
-              <span className="mb-4 text-xs font-light text-primary">
+              <span className="mb-4 text-xs font-light text-primary print:text-base">
                 nomedoaluno@fatec.sp.gov.br <br /> RA: 123456789000
               </span>
               <PictureImage

@@ -109,7 +109,7 @@ const Header = () => {
           </ScrollArea>
         </SheetContent>
       </Sheet>
-      <div className="flex w-full max-w-[80%]  items-center py-4 text-primary">
+      <div className="flex w-full max-w-[80%]  items-center py-4 text-primary print:hidden">
         <IconGoogle
           name="search"
           className="relative bottom-[0.625rem] left-8 shrink-0 translate-y-1/2 transform text-icon"
